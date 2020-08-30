@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HW4_29QuestionTagRelationships.Data.Migrations
 {
     [DbContext(typeof(QuestionTagContext))]
-    [Migration("20200827052904_Initial")]
+    [Migration("20200827161540_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -155,13 +155,13 @@ namespace HW4_29QuestionTagRelationships.Data.Migrations
                     b.HasOne("HW4_29QuestionTagRelationships.Data.Question", "Question")
                         .WithMany()
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("HW4_29QuestionTagRelationships.Data.User", "User")
                         .WithMany("Answers")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -170,13 +170,13 @@ namespace HW4_29QuestionTagRelationships.Data.Migrations
                     b.HasOne("HW4_29QuestionTagRelationships.Data.Answer", "Answer")
                         .WithMany("LikesAnswers")
                         .HasForeignKey("AnswerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("HW4_29QuestionTagRelationships.Data.User", "User")
                         .WithMany("LikesAnswers")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -185,13 +185,13 @@ namespace HW4_29QuestionTagRelationships.Data.Migrations
                     b.HasOne("HW4_29QuestionTagRelationships.Data.Question", "Question")
                         .WithMany("LikesQuestions")
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("HW4_29QuestionTagRelationships.Data.User", "User")
                         .WithMany("LikesQuestions")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -200,7 +200,7 @@ namespace HW4_29QuestionTagRelationships.Data.Migrations
                     b.HasOne("HW4_29QuestionTagRelationships.Data.User", "User")
                         .WithMany("Questions")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -209,13 +209,13 @@ namespace HW4_29QuestionTagRelationships.Data.Migrations
                     b.HasOne("HW4_29QuestionTagRelationships.Data.Question", "Question")
                         .WithMany("QuestionsTags")
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("HW4_29QuestionTagRelationships.Data.Tag", "Tag")
                         .WithMany("QuestionsTags")
                         .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

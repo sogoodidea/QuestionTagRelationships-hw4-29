@@ -13,6 +13,7 @@ namespace HW4_29QuestionTagRelationships
 {
     public class Startup
     {
+        private string CookieScheme = "HW4-29QuestionTagRelationships";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,6 +24,12 @@ namespace HW4_29QuestionTagRelationships
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieScheme)
+                .AddCookie(CookieScheme, options =>
+                {
+                    options.LoginPath = "/home/login";
+                });
+            services.AddSession();
             services.AddControllersWithViews();
         }
 
@@ -39,9 +46,12 @@ namespace HW4_29QuestionTagRelationships
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSession();
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseCookiePolicy();
             app.UseRouting();
 
             app.UseAuthorization();

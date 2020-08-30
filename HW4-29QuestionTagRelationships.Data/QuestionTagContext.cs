@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HW4_29QuestionTagRelationships.Data
@@ -29,6 +30,11 @@ namespace HW4_29QuestionTagRelationships.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
             modelBuilder.Entity<LikesQuestions>()
                .HasKey(uq => new { uq.QuestionId, uq.UserId });
             modelBuilder.Entity<LikesQuestions>()

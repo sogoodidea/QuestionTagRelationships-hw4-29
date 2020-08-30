@@ -14,5 +14,6 @@ namespace HW4_29QuestionTagRelationships.Data
         public User User { get; set; }
         public List <QuestionsTags> QuestionsTags { get; set; }
         public List <LikesQuestions> LikesQuestions { get; set; }
+        public List<Answer> Answers { get; set; }
     }
 }

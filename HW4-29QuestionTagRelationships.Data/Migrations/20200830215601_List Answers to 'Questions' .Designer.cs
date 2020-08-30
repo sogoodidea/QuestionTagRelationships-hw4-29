@@ -4,14 +4,16 @@ using HW4_29QuestionTagRelationships.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HW4_29QuestionTagRelationships.Data.Migrations
 {
     [DbContext(typeof(QuestionTagContext))]
-    partial class QuestionTagContextModelSnapshot : ModelSnapshot
+    [Migration("20200830215601_List Answers to 'Questions' ")]
+    partial class ListAnswerstoQuestions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -5,4 +5,12 @@
     <RootNamespace>HW4_29QuestionTagRelationships</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HW4-29QuestionTagRelationships.Data\HW4-29QuestionTagRelationships.Data.csproj" />
+  </ItemGroup>
+
 </Project>

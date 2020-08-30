@@ -1,0 +1,71 @@
+﻿@using HW4_29QuestionTagRelationships.Data
+@model ViewQuestionViewModel
+
+
+<div class="row">
+    <div class="col-md-6 offset-3 card card-body bg-light">
+        <div class="container">
+            <p>@Model.Question.Title</p><br />
+            <p>@Model.Question.Text</p><br />
+            <p>
+                Tags:
+                @foreach (QuestionsTags qt in Model.Question.QuestionsTags)
+                {
+                    @qt.Tag.Name <span>   </span>
+                }
+            </p>
+            <p id="current-likes">Likes: @Model.Question.LikesQuestions.Count</p>
+        </div>
+    </div>
+</div>
+<br />
+
+<div id="answers">
+    <h1>ANSWERS</h1>
+    <br />
+    @if (Model.Question.Answers.Count == 0)
+    {
+        <span id="no-answers">There are no answers posted for this question</span><br />
+    }
+    else
+    {
+        foreach (Answer answer in Model.Question.Answers)
+        {
+            <div class="row">
+                <div class="col-md-6 offset-3 card card-body bg-light">
+                    <div class="container">
+                        <p>@answer.Text</p>
+                        <p>Submitted by: @answer.User.Email</p>
+                    </div>
+                </div>
+            </div>
+            <br />
+        }
+    }
+
+</div>
+<br />
+
+<br />
+@if (Model.IsAuthenticated)
+{
+    <div id="ids" data-question-id="@Model.Question.Id" data-user-id="@Model.User.Id" data-user-email="@Model.User.Email">
+
+        @if (Model.Question.LikesQuestions.Any(lq => lq.UserId == Model.User.Id))
+        {
+            <button disabled class="btn btn-primary">Like</button>
+        }
+        else
+        {
+            <button id="btn-like" class="btn btn-primary">Like</button>
+        }
+        <br /><br />
+        <textarea id="answer-text" class="form-control" placeholder="Type your answer here..." rows="10"></textarea><br /><br />
+        <button id="submit-answer" class="btn btn-primary">Submit Answer</button>
+    </div>
+}
+
+@section scripts
+{
+    <script src="~/js/ViewQuestion.js"></script>
+}

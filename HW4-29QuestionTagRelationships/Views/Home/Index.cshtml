@@ -1,1 +1,23 @@
-﻿
+﻿@using HW4_29QuestionTagRelationships.Data
+@model List<Question>
+
+@foreach (Question question in Model)
+{
+    <div class="row">
+        <div class="col-md-6 offset-3 card card-body bg-light">
+            <div class="container">
+                <p><a href="/home/ViewQuestion?questionId=@question.Id">@question.Title</a></p>
+                <p>Likes: @question.LikesQuestions.Count</p>
+                <p>
+                    Tags:
+                    @foreach (QuestionsTags qt in question.QuestionsTags)
+                    {
+                        @qt.Tag.Name <span>   </span>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+    <br />
+}
+
